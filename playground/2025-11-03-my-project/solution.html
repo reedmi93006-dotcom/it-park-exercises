@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>my-project</title>
+  <!-- 
+    Mashq: my-project
+    Sana: 2025-11-03 12:04:21
+    Turi: playground
+  -->
+</head>
+<body>
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mening loyiham</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: white;
+  color: black;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+</style>
+
+      <script>
+        (function() {
+          const originalLog = console.log;
+          const originalError = console.error;
+          const originalWarn = console.warn;
+          const originalInfo = console.info;
+          
+          console.log = function(...args) {
+            window.parent.postMessage({ type: 'console', level: 'log', message: args.map(String).join(' ') }, '*');
+            originalLog.apply(console, args);
+          };
+          
+          console.error = function(...args) {
+            window.parent.postMessage({ type: 'console', level: 'error', message: args.map(String).join(' ') }, '*');
+            originalError.apply(console, args);
+          };
+          
+          console.warn = function(...args) {
+            window.parent.postMessage({ type: 'console', level: 'warn', message: args.map(String).join(' ') }, '*');
+            originalWarn.apply(console, args);
+          };
+          
+          console.info = function(...args) {
+            window.parent.postMessage({ type: 'console', level: 'info', message: args.map(String).join(' ') }, '*');
+            originalInfo.apply(console, args);
+          };
+          
+          window.onerror = function(msg, url, line, col, error) {
+            window.parent.postMessage({ 
+              type: 'console', 
+              level: 'error', 
+              message: 'Error: ' + msg + ' at line ' + line 
+            }, '*');
+            return false;
+          };
+        })();
+      </script>
+    
+</head>
+<body>
+  <h1>Salom, Dunyo!</h1>
+  <p>Bu mening birinchi loyiham.</p>
+<script>
+// JavaScript kodingiz
+console.log('Salom!');
+</script>
+</body>
+</html>
+</body>
+</html>
